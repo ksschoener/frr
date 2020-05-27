@@ -359,9 +359,8 @@ void zebra_register_rnh_pseudowire(vrf_id_t vrf_id, struct zebra_pw *pw)
 	if (rnh && !listnode_lookup(rnh->zebra_pseudowire_list, pw)) {
 		listnode_add(rnh->zebra_pseudowire_list, pw);
 		pw->rnh = rnh;
-		zebra_evaluate_rnh(zvrf, family2afi(pw->af), 1,
-				   RNH_NEXTHOP_TYPE, &nh);
 	}
+	zebra_evaluate_rnh(zvrf, family2afi(pw->af), 1, RNH_NEXTHOP_TYPE, &nh);
 }
 
 void zebra_deregister_rnh_pseudowire(vrf_id_t vrf_id, struct zebra_pw *pw)
